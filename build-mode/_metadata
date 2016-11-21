@@ -1,0 +1,10 @@
+{
+	"author"         : "Ilazki",
+	"name"           : "build-mode",
+	"friendlyName"   : "Build Mode",
+	"link"           : "https://steamcommunity.com/sharedfiles/filedetails/?id=803685258",
+	"description"    : "Adds a \"Build Mode\" checkbox to the Matter Manipulator.  Build Mode slows the player while greatly increasing the manipulator's range.\n\nThis mod's purpose is to improve the building experience without affecting normal gameplay.",
+	"dependencies"   : [],
+	"version"        : "1.0",
+	"steamContentId" : "803685258"
+}

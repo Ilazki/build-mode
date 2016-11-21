@@ -1,0 +1,10 @@
+{
+	"name" : "buildmode",
+	"effectConfig" : {},
+	"defaultDuration" : -1,
+	"scripts" : [
+		"buildmode.lua"
+	],
+	"label" : "Build Mode: Slowed",
+	"icon" : "/items/tools/miningtools/beamaxe.png"
+}

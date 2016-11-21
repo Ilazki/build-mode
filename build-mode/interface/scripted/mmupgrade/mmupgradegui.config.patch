@@ -1,0 +1,52 @@
+[
+	[
+		{
+			"op"	: "add",
+			"path"	: "/gui/rangeLabel",
+			"value"	: {
+				"type"		: "label",
+				"position"	: [262, 113],
+				"hAnchor"	: "left",
+				"value"		: "Build Mode"
+			}
+		},
+		{
+			"op"	: "add",
+			"path"	: "/gui/rangeCheckbox",
+			"value"	: {
+				"type"				: "button",
+				"pressedOffset"		: [0, 0],
+				"position"			: [249, 113],
+				"base"				: "/interface/optionsmenu/checkboxnocheck.png",
+				"hover"				: "/interface/optionsmenu/checkboxnocheckhover.png",
+				"baseImageChecked"	: "/interface/optionsmenu/checkboxcheck.png",
+				"hoverImageChecked"	: "/interface/optionsmenu/checkboxcheckhover.png",
+				"checkable"			: true,
+				"checked"			: false,
+				"callback"			: "mmbm.rangeCheckbox"
+			}
+		},
+		{
+			"op"	: "add",
+			"path"	: "/scripts/-",
+			"value"	: "/interface/scripted/mmupgrade/mmbm.lua"
+		},
+		{
+			"op"	: "add",
+			"path"	: "/scriptWidgetCallbacks/-",
+			"value"	: "mmbm.rangeCheckbox"
+		}
+	],
+	[
+		{
+			"op"	: "add",
+			"path"	: "/packages/0/show/-",
+			"value"	: "rangeLabel"
+		},
+		{
+			"op"	: "add",
+			"path"	: "/packages/0/show/-",
+			"value"	: "rangeCheckbox"
+		}
+	]
+]
