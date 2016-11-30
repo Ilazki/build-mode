@@ -11,7 +11,7 @@ end
 
 --- Test and update build mode state as part of GUI updates.
 local function updateBuildMode ()
-   local canBuildMode = mmbm.canBuildMode()
+   local canBuildMode = mmbm.canBuildMode(player)
    widget.setButtonEnabled("rangeCheckbox",canBuildMode)
    widget.setFontColor("rangeLabel", (canBuildMode and "#FFFFFF") or "#888888")
    mmbm.rangeCheckbox()
@@ -43,10 +43,10 @@ function mmbm.rangeCheckbox ()
    local beamaxe = player.essentialItem("beamaxe")
    local json
    local newRange
-   local canBuildMode = mmbm.canBuildMode()
+   local canBuildMode = mmbm.canBuildMode(player)
    -- Set beamaxe range to Build Mode value, add Build Mode effect
    if canBuildMode and buildMode() then
-	  newRange = mmbm.buildRange()
+	  newRange = mmbm.buildRange(player)
 	  status.addEphemeralEffect("buildmode", math.huge)
    -- Set beamaxe range to normal value, remove Build Mode effect
    elseif canBuildMode then
@@ -61,7 +61,7 @@ function mmbm.rangeCheckbox ()
 	  -- the upgrades["keyname"] table syntax and string concatenation.
 	  json = root.assetJson("/interface/scripted/mmupgrade/mmupgradegui.config")
 	  newRange = json.
-		 upgrades["range" .. mmbm.beamaxeRange()].
+		 upgrades["range" .. mmbm.beamaxeRange(player)].
 		 setStatusProperties.
 		 bonusBeamGunRadius
 	  status.removeEphemeralEffect("buildmode")

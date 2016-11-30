@@ -1,7 +1,11 @@
+--------------------------------------------------------------------------------
 --- Common functions for build mode
+--------------------------------------------------------------------------------
 
 
+--------------------------------------------------------------------------------
 --- Initialise the mmbm table, set range values (level) for build mode
+
 mmbm = {
    buildMode = {
 	  level = {
@@ -32,17 +36,22 @@ mmbm.buildMode.level[0] = {
    size  = 0,
 }
 
+--------------------------------------------------------------------------------
+--- Functions to check and return information
+
+
 --- Returns the beamaxe upgrade table [beamaxe.parameters.upgrades] or nil
-function mmbm.getBeamaxeUpgrades ()
-   local beamaxe = player.essentialItem("beamaxe")
+function mmbm.getBeamaxeUpgrades (p)
+   -- Attempts to use a passed player arg if given, default to global otherwise.
+   local beamaxe = p.essentialItem("beamaxe")
    return beamaxe and
 	  beamaxe.parameters and
 	  beamaxe.parameters.upgrades
 end
 
 --- Returns beamaxe (MM) upgrade level [0-3]
-function mmbm.beamaxeRange ()
-   local bmu = mmbm.getBeamaxeUpgrades()
+function mmbm.beamaxeRange (p)
+   local bmu = mmbm.getBeamaxeUpgrades(p)
    local beamRange = 0
    if not bmu then return beamRange end
    for k,v in pairs(bmu) do
@@ -56,15 +65,18 @@ function mmbm.beamaxeRange ()
 end
 
 --- Returns correct build mode range for beamaxe upgrade level.
-function mmbm.buildRange ()
-   return mmbm.buildMode.level[mmbm.beamaxeRange()].range
+function mmbm.buildRange (p)
+   return mmbm.buildMode.level[mmbm.beamaxeRange(p)].range
 end
 
 --- Predicate, returns whether build mode can be enabled as a boolean.
-function mmbm.canBuildMode ()
-   if mmbm.beamaxeRange() > 0 then return true end
+function mmbm.canBuildMode (p)
+   if mmbm.beamaxeRange(p) > 0 then return true end
    return false
 end
 
 
---return bmc
+--------------------------------------------------------------------------------
+--- Other
+
+-- function mmbm
