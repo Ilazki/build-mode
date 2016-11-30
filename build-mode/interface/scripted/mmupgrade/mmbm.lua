@@ -1,62 +1,17 @@
+--- Common functions and data used by all parts of build mode
+require "/scripts/build-mode/bm-common.lua"
+
 --- TODO:  See if it's possible to set a hotkey to toggle build mode.
-
---- Initialise the mmbm table, set range values (level) for build mode
-mmbm = {
-   buildMode = {
-	  level = {
-		 13,	-- upgrade1
-		 26,	-- upgrade2
-		 39,	-- upgrade3
-	  },
-   }
-}
-
---- Adds a 0th element to the array.  Doesn't get counted in pairs() but can be
---- accessed manually, which simplifies beamaxeRange(), buildRange(), and init()
-mmbm.buildMode.level[0] = 0
-
---- Returns the beamaxe upgrade table [beamaxe.parameters.upgrades] or nil
-local function getBeamaxeUpgrades ()
-   local beamaxe = player.essentialItem("beamaxe")
-   return beamaxe and
-	  beamaxe.parameters and
-	  beamaxe.parameters.upgrades
-end
 
 --- Predicate, returns checkbox status as boolean
 local function buildMode ()
    return widget.getChecked("rangeCheckbox")
 end
 
---- Returns beamaxe (MM) upgrade level [0-3]
-local function beamaxeRange ()
-   local bmu = getBeamaxeUpgrades()
-   local beamRange = 0
-   if not bmu then return beamRange end
-   for k,v in pairs(bmu) do
-	  local upgrade = string.sub(v,1,#v-1)
-	  if upgrade == "range" then
-		 local ugLevel = tonumber(string.sub(v,#v,#v))
-		 if ugLevel > beamRange then beamRange = ugLevel end
-	  end
-   end
-   return beamRange
-end
-
---- Returns correct build mode range for beamaxe upgrade level.
-local function buildRange ()
-   return mmbm.buildMode.level[beamaxeRange()]
-end
-
---- Predicate, returns whether build mode can be enabled as a boolean.
-local function canBuildMode ()
-   if beamaxeRange() > 0 then return true end
-   return false
-end
 
 --- Test and update build mode state as part of GUI updates.
 local function updateBuildMode ()
-   local canBuildMode = canBuildMode()
+   local canBuildMode = mmbm.canBuildMode()
    widget.setButtonEnabled("rangeCheckbox",canBuildMode)
    widget.setFontColor("rangeLabel", (canBuildMode and "#FFFFFF") or "#888888")
    mmbm.rangeCheckbox()
@@ -77,7 +32,7 @@ function init ()
 
    -- Check beam radius and set the initial state of the checkbox appropriately.
    for i,v in ipairs(mmbm.buildMode.level) do
-	  if status.statusProperty("bonusBeamGunRadius") == v then
+	  if status.statusProperty("bonusBeamGunRadius") == v["range"] then
 		 widget.setChecked("rangeCheckbox",true)
 	  end
    end
@@ -88,10 +43,10 @@ function mmbm.rangeCheckbox ()
    local beamaxe = player.essentialItem("beamaxe")
    local json
    local newRange
-   local canBuildMode = canBuildMode()
+   local canBuildMode = mmbm.canBuildMode()
    -- Set beamaxe range to Build Mode value, add Build Mode effect
    if canBuildMode and buildMode() then
-	  newRange = buildRange()
+	  newRange = mmbm.buildRange()
 	  status.addEphemeralEffect("buildmode", math.huge)
    -- Set beamaxe range to normal value, remove Build Mode effect
    elseif canBuildMode then
@@ -106,7 +61,7 @@ function mmbm.rangeCheckbox ()
 	  -- the upgrades["keyname"] table syntax and string concatenation.
 	  json = root.assetJson("/interface/scripted/mmupgrade/mmupgradegui.config")
 	  newRange = json.
-		 upgrades["range" .. beamaxeRange()].
+		 upgrades["range" .. mmbm.beamaxeRange()].
 		 setStatusProperties.
 		 bonusBeamGunRadius
 	  status.removeEphemeralEffect("buildmode")
