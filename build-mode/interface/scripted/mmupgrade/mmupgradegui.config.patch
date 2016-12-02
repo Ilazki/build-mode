@@ -38,15 +38,8 @@
 		}
 	],
 	[
-		{
-			"op"	: "add",
-			"path"	: "/packages/0/show/-",
-			"value"	: "rangeLabel"
-		},
-		{
-			"op"	: "add",
-			"path"	: "/packages/0/show/-",
-			"value"	: "rangeCheckbox"
-		}
+		{	"op" : "test",  "path" : "/packages/0/name"  ,   "value" : "mmupgrade"     },
+		{	"op" : "add" ,  "path" : "/packages/0/show/-",   "value" : "rangeLabel"    },
+		{	"op" : "add" ,  "path" : "/packages/0/show/-",   "value" : "rangeCheckbox" }
 	]
 ]
