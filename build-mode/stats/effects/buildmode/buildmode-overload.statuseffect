@@ -1,0 +1,10 @@
+{
+	"name" : "buildmode-overload",
+	"effectConfig" : {},
+	"defaultDuration" : -1,
+	"scripts" : [
+		"buildmode-overload.lua"
+	],
+	"label" : "Build Mode: Overload",
+	"icon" : "/interface/bookmarks/icons/magma.png"
+}

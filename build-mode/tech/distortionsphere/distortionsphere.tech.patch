@@ -1,0 +1,8 @@
+ 
+[
+	{
+		"op" : "add",
+		"path" : "/scripts/-",
+		"value" : "/tech/distortionsphere/build-mode-tech.lua"
+	}
+]
