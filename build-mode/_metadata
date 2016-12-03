@@ -1,5 +1,5 @@
 {
-	"priority"       : "9999",
+	"priority"       : 9999,
 	"author"         : "Ilazki",
 	"name"           : "build-mode",
 	"friendlyName"   : "Build Mode",
