@@ -1,8 +1,7 @@
 [
 	{
-		"op" : "add",
-		"path" : "/companionsConfig/scripts/-",
+		"op"    : "add",
+		"path"  : "/companionsConfig/scripts/-",
 		"value" : "/scripts/build-mode/bm-companions-hook.lua"
 	}
-
 ]

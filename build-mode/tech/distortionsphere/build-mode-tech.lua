@@ -71,7 +71,8 @@ end
 --- may hurt readability in the long-term, especially for others.
 
 --- Closure that binds `update` to `updateSuper`, returns a function to be
---- used as the new `update`
+--- used as the new `update`.
+--  This function is constantly called, keep it free of unnecessary crap.
 local function _update ()
    local updateSuper = update
    return function (args)
@@ -89,7 +90,6 @@ local function _init ()
    return function ()
 	  -- Shadow `update`
 	  update = _update()
-	  print("::: BUILD MODE INIT [/tech/build-mode.lua]")
 	  if initSuper then initSuper() end
    end
 end

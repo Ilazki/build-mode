@@ -22,9 +22,6 @@ local function _update ()
 		 mmbm.manipulator.update()
 		 prop.set("update", 0)
 	  end
-	  -- TODO:  Remove me before release.  Testing values here
-	  local bp = player.essentialItem("beamaxe").parameters
-	  print("::> " .. sb.print(bp.tileDamage))
 	  if updateSuper then updateSuper(dt) end
    end
 end

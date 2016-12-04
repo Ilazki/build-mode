@@ -57,10 +57,9 @@ local function _init ()
 	  -- In practice, this should not be a problem because the overload mode is
 	  -- already nearly instant for most block types.  If people want to use
 	  -- this for faster brainsblock looting, so be it.
-	  if mmbm.statusEffect("buildmode-overload") then
-		 mmbm.overload.toggle() end
+	  mmbm.manipulator.reset()
 	  mmbm.prop.set("hotkeys",0)
-
+	  
 	  -- Shadow `updateGui` with new function
 	  updateGui = _updateGui()
 	  -- Check beam radius and set the initial state of the checkbox appropriately.
@@ -88,15 +87,25 @@ end
 uninit = _uninit()
 
 
+--- Detect if Matter Manipulator Manipulator exists, and if so, replace its
+--- calcDamage function with a no-op. This is a workaround to prevent tileDamage
+--- from bugging out when combining both mods' beam size changing features.
+
+--- It should be possible to solve this more cleanly, but the way MMM handles
+--- manipulator values and its own internal state made it more trouble than
+--- it's worth.  I may revisit this later.
+if mmm then
+   function mmm.calcDamage () return end
+end
+
 --- /gui/rangeCheckbox callback
 function mmbm.rangeCheckbox ()
    local canBuildMode = mmbm.canBuildMode()
    if canBuildMode and buildModeChecked() then
 	  mmbm.enableBuildMode()
-	  --- Testing disabling MMM parts.
    else
+	  mmbm.disableBuildMode()
 	  if not canBuildMode then
 		 widget.setChecked("rangeCheckbox",false) end
-	  mmbm.disableBuildMode()
    end
 end
