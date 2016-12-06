@@ -1,12 +1,12 @@
 function init()
 end
 
---- TODO:  Reevaluate the negative effects of overload mode after spending
---- some time using it.
+--- TODO:  Reevaluate whether negative effects on overload are needed later.
+--- The extra movement penalty was overkill, but maybe an energy drain.
 function update(dt)
-   mcontroller.controlModifiers({
-		 groundMovementModifier = 0.4,
-		 speedModifier = 0.4,
---		 airJumpModifier = 0.8,
-   })
+   -- mcontroller.controlModifiers({
+   -- 		 groundMovementModifier = 0.4,
+   -- 		 speedModifier = 0.4,
+   --		 airJumpModifier = 0.8,
+   --   })
 end

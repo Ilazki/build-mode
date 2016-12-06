@@ -1,10 +1,15 @@
 {
 	"name" : "buildmode",
-	"effectConfig" : {},
+	"effectConfig" : {
+		"speedMod"   : 0.5,
+//		"jumpMod"    : 0.8,
+		"combatMod"  : 0.1,
+		"defenseMod" : 0.5
+	},
 	"defaultDuration" : -1,
 	"scripts" : [
 		"buildmode.lua"
 	],
-	"label" : "Build Mode: Slowed",
+	"label" : "Build Mode",
 	"icon" : "/items/tools/miningtools/beamaxe.png"
 }
