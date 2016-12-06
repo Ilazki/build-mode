@@ -27,6 +27,34 @@ local function updateBuildMode ()
    mmbm.rangeCheckbox()
 end
 
+--- Create a help tooltip to explain the less obvious build mode features.
+--- I'm not aware of anyone else doing this in the MM GUI, but I'm still
+--- attempting to shadow an existing definition and call it if it exists,
+--- so that build mode will play nicely with future addons doing similar.
+
+--- createTooltip is an undocumented function that isn't called by any
+--- lua code directly.  When defined, the game engine will call it with
+--- a screenPosition argument.  screenPosition is an array with the x,y
+--- coordinates of the cursor.  If createTooltip returns a valid tooltip
+--- table, it will be drawn.  If not, an existing tooltip is removed.
+local function _createTooltip ()
+   local createTooltipSuper = createTooltip
+   return function (screenPosition)
+	  if createTooltipSuper then createTooltipSuper() end
+	  -- Load up the tooltip data from mmupgradegui.config(.patch)
+	  local tooltip = config.getParameter("tooltips").bmHelpTooltip or { }
+	  -- Example of programmatically changing the config-defined tooltip
+	  -- tooltip.title.value = "Unused"
+	  -- tooltip.description.value = "This overrides the patchfile value"
+
+	  -- Only return a tooltip if the cursor is over the bmHelp widget.
+	  -- This function seems to be undocumented but is used by the
+	  -- collectionsgui.lua
+	  if widget.inMember("bmHelp", screenPosition) then 
+		 return tooltip end
+   end
+end
+
 --- Closure that creates a function replacement for `updateGui`
 local function _updateGui ()
    local updateGuiSuper = updateGui
@@ -62,6 +90,10 @@ local function _init ()
 	  
 	  -- Shadow `updateGui` with new function
 	  updateGui = _updateGui()
+
+	  -- Shadow `createTooltip` with replacement, see _createTooltip above.
+	  createTooltip = _createTooltip()
+	  
 	  -- Check beam radius and set the initial state of the checkbox appropriately.
 	  for i,v in ipairs(mmbm.buildMode.level) do
 		 if status.statusProperty("bonusBeamGunRadius") == v["range"] then

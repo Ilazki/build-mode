@@ -12,6 +12,18 @@
 		},
 		{
 			"op"	: "add",
+			"path"	: "/gui/bmHelp",
+			"value"	: {
+				"type"		: "label",
+				"position"	: [306, 113],
+				"hAnchor"	: "left",
+				"color"     : "#DBDB00",
+				"value"		: "[?]"
+			}
+		},
+		
+		{
+			"op"	: "add",
 			"path"	: "/gui/rangeCheckbox",
 			"value"	: {
 				"type"				: "button",
@@ -26,6 +38,42 @@
 				"callback"			: "mmbm.rangeCheckbox"
 			}
 		},
+
+
+		{
+			"op"    : "add",
+			"path"  : "/tooltips",
+			"value" : {
+				"bmHelpTooltip" : {
+					"background" : {
+						"type" : "background",
+						"fileHeader" : "",
+						"fileBody" : "/interface/tooltips/racebody.png",
+						"fileFooter" : ""
+					},
+					"title" : {
+						"type" : "label",
+						"position" : [11, 54],
+						"hAnchor" : "left",
+						"vAnchor" : "top",
+						"wrapWidth" : 220,
+						"fontSize" : 12
+					},
+					"description" : {
+						"type" : "label",
+						"position" : [11, 59],
+						"hAnchor" : "left",
+						"vAnchor" : "top",
+						"wrapWidth" : 220,
+						"fontSize"  : 7,
+						"value"     : "Build mode increases manipulator range and enables the use of hotkeys to control its size and power.  When active, speed, defense, and damage are reduced.\n\nHotkeys require an unlocked head tech and use the ^violet;activate head tech^reset; key plus ^violet;up^reset;, ^violet;down^reset;, or ^violet;jump^reset;."
+
+					}
+				}
+			}
+		},
+
+		
 		{
 			"op"	: "add",
 			"path"	: "/scripts/-",
@@ -40,6 +88,7 @@
 	[
 		{	"op" : "test",  "path" : "/packages/0/name"  ,   "value" : "mmupgrade"     },
 		{	"op" : "add" ,  "path" : "/packages/0/show/-",   "value" : "rangeLabel"    },
-		{	"op" : "add" ,  "path" : "/packages/0/show/-",   "value" : "rangeCheckbox" }
+		{	"op" : "add" ,  "path" : "/packages/0/show/-",   "value" : "rangeCheckbox" },
+		{	"op" : "add" ,  "path" : "/packages/0/show/-",   "value" : "bmHelp" }
 	]
 ]
