@@ -101,7 +101,10 @@ local function _init ()
 		 end
 	  end
 	  -- Trigger UI update to apply the above change.
-	  updateGui()
+	  -- WARN:  This breaks Manipulated UI, disabled for now.
+	  -- TODO:  Find a better way to force a UI redraw.  The slight delay when
+	  -- opening the MM interface the first time is annoying.
+	  --	  updateGui()
    end
 end
 
