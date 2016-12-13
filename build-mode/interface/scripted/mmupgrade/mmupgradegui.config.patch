@@ -48,7 +48,7 @@
 					"background" : {
 						"type" : "background",
 						"fileHeader" : "",
-						"fileBody" : "/interface/tooltips/racebody.png",
+						"fileBody" : "/interface/tooltips/build-mode/bm-tooltip.png",
 						"fileFooter" : ""
 					},
 					"title" : {
@@ -61,13 +61,17 @@
 					},
 					"description" : {
 						"type" : "label",
-						"position" : [11, 59],
+						"position" : [11, 122],
 						"hAnchor" : "left",
 						"vAnchor" : "top",
 						"wrapWidth" : 220,
 						"fontSize"  : 7,
-						"value"     : "Build mode increases manipulator range and enables the use of hotkeys to control its size and power.  When active, speed, defense, and damage are reduced.\n\nHotkeys require an unlocked head tech and use the ^violet;activate head tech^reset; key plus ^violet;up^reset;, ^violet;down^reset;, or ^violet;jump^reset;."
+						"value"     : "Build mode increases manipulator range and enables the use of hotkeys to control its size, power, and the zoom level of the camera.  When active, player speed, defense, and damage are reduced.\n\nHotkeys require an unlocked head tech and use the ^violet;activate head tech^reset; key plus ^violet;up^reset;, ^violet;down^reset;, ^violet;left^reset;, ^violet;right^reset;, or ^violet;jump^reset;.
 
+^yellow;o^reset; ^violet;up^reset;, ^violet;down^reset;:  Changes manipulator area-of-effect size.
+^yellow;o^reset; ^violet;left^reset;, ^violet;right^reset;:  Changes camera zoom level.
+^yellow;o^reset; ^violet;jump^reset;:  Toggles ^orange;overload^reset;.  Increases manipulator power while active.
+"
 					}
 				}
 			}
