@@ -83,7 +83,16 @@ mmbm.keybinds = {
    {
 	  keys = {special = 1, jump = true},
 	  f = function () mmbm.overload.toggle() end
+   },
+   {
+	  keys = {special = 1, left = true},
+	  f = function () mmbm.zoom.decrease() end
+   },
+   {
+	  keys = {special = 1, right = true},
+	  f = function () mmbm.zoom.increase() end
    }
+
    -- {
    -- 	  keys = {run = false, jump = true},
    -- 	  f = function () print("shift-jump example") end
@@ -302,6 +311,22 @@ function mmbm.disableBuildMode()
    status.setStatusProperty("bonusBeamGunRadius",beamRange)
 end
 
+--- Zoom functions
+mmbm.zoom = { }
+
+function mmbm.zoom.increase ()
+   local prop = mmbm.prop or { }
+   prop.set("zoom",1)
+   prop.set("update",1)
+end
+
+function mmbm.zoom.decrease ()
+   local prop = mmbm.prop or { }
+   prop.set("zoom",-1)
+   prop.set("update",1)
+end
+
+
 --- Overload functions.
 mmbm.overload = { }
 
@@ -348,6 +373,9 @@ function mmbm.manipulator.update ()
    local prop = mmbm.prop or { }
    local beamaxe = player.essentialItem("beamaxe")
    local painttool = player.essentialItem("painttool")
+
+   -- Test and set zoom
+   mmbm.manipulator.zoom()
 
    -- Test and set overload
    beamaxe.parameters.tileDamage = mmbm.manipulator.overload(beamaxe.parameters.tileDamage)
@@ -441,6 +469,33 @@ function mmbm.manipulator.overload(tileDamage)
    end
    prop.delete("overload")		-- Remove property when done.
    return tileDamage
+end
+
+--- Change zoom level, respecting values defined in optionsmenu.config
+function mmbm.manipulator.zoom ()
+   local prop = mmbm.prop or { }
+
+   -- Attempt to get zoom change, break out early if no change requested.
+   local zoomChange  = prop.get("zoom")
+   if type(zoomChange) ~= "number" then zoom = 0 end
+   if zoom == 0 then return end
+
+   -- Get current and valid zoom levels from configs, set min/max/current zooms.
+   local json = root.assetJson("/interface/optionsmenu/optionsmenu.config") or { }
+   local zoomList = json.zoomList
+   table.sort(zoomList)			-- Should already be in order, but just in case
+   local minZoom = zoomList[1]					-- First element is minimum zoom
+   local maxZoom = zoomList[#zoomList]			-- Last element is maximum zoom
+   local curZoom = root.getConfiguration("zoomLevel")
+
+   -- Set desired new zoom, test if valid.
+   local newZoom = curZoom + zoomChange
+   if newZoom < minZoom then newZoom = minZoom end
+   if newZoom > maxZoom then newZoom = maxZoom end
+
+   -- Set new zoom level and reset zoom message.
+   root.setConfiguration("zoomLevel",newZoom)
+   prop.set("zoom",0)
 end
 
 
