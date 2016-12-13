@@ -7,6 +7,6 @@
 	"description"    : "Adds a ^violet;Build Mode^reset; checkbox to the Matter Manipulator.  When enabled, build mode increases the manipulator's range and adds hotkey control for its size and power settings, while also reducing movement speed and combat effectiveness.\n\nThis mod's purpose is to improve the building experience without negatively affecting normal gameplay.",
 	"dependencies"   : [],
 	"includes"       : ["Manipulated UI"],
-	"version"        : "1.1",
+	"version"        : "1.2",
 	"steamContentId" : "803685258"
 }

@@ -12,6 +12,7 @@ This mod was made to allow more convenient use of a graphics tablet for building
 * If the character has a head tech (one of the four sphere techs), **manipulator settings can be controlled by hotkeys**.
 * With fully upgraded optics and matter proc unit, **dig and paint size can be adjusted from 1x1 to 8x8**.
 * Adds an **overload mode** toggle that increases the manipulator's tile damage when activated.
+* Adds **camera zoom hotkeys**.
 * A build mode status effect provides visual feedback.  It appears under the hunger bar like any other status effect.
 
 With the benefits it provides, it's tempting to leave build mode active all the time.  To discourage this and add a measure of risk to using it in the wild, build mode also adds a few negative effects:
@@ -29,10 +30,11 @@ Its most basic feature, the range increase, needs no further interaction and has
 
 Once build mode is enabled and a head tech is equipped, the following key combinations are usable:  
 
-* **active head tech** + **up**:  Increase dig and paint radius.
-* **active head tech** + **down**:  Decrease dig and paint radius.
-* **active head tech** + **jump**:  Toggle overload mode.  Dig power is greatly increased when enabled.
-
+* **activate head tech** + **up**:  Increase dig and paint radius.
+* **activate head tech** + **down**:  Decrease dig and paint radius.
+* **activate head tech** + **jump**:  Toggle overload mode.  Dig power is greatly increased when enabled.
+* **activate head tech** + **left**:  Zoom camera out by one step.
+* **activate head tech** + **right**:  Zoom camera in by one step.
 
 ## Compatibility
 
@@ -43,10 +45,7 @@ Once build mode is enabled and a head tech is equipped, the following key combin
 * For technical reasons, build mode adds hooks into certain tech and crew/pet scripts.  This should cause no problems with other mods but is listed for completeness.  For example, I use Improved Techs and have no problems.
 * Mods that replace any of the four head techs should still work as expected.
 * Mods that add additional techs will work, but build mode's hotkeys will only work when using one of the four vanilla techs.
-
-* Should work with other MM mods.  Build Mode adds very little:  two GUI elements, a script, and a status effect.  Ranges are pulled from the mmupgradegui.config, so it should even work with addons that change these values, such as the Overpowered Matter Manipulator mod.
-* Exception:  build mode **will not work with Enhanced Matter Manipulator**.  EMM completely changes the GUI and upgrade scheme.  I won't be supporting this, sorry.
-* Tested to work with Matter Manipulator Manipulator and Manipulated UI.
+* Zoom hotkeys respect additional zoom steps added by other mods, such as Extra Zoom Levels.
 
 ## Notes and Warnings
 
