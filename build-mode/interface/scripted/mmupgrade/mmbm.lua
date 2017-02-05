@@ -115,8 +115,8 @@ init = _init()
 local function _uninit ()
    local uninitSuper = uninit
    return function ()
-	  if uninitSuper then uninitSuper() end
 	  mmbm.prop.set("hotkeys",1)
+	  if uninitSuper then uninitSuper() end
    end
 end
 uninit = _uninit()
