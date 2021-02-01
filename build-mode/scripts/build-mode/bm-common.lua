@@ -270,6 +270,19 @@ function mmbm.statusEffect (effect)
    return false
 end
 
+--- Get the correct JSON asset for the MM upgrade GUI.  Necessary to handle odd
+--- situations like the existence of Quickbar Mini changing files around.
+function mmbm.rootAssetJson ()
+   -- Try to grab the vanilla JSON asset first
+   local json = root.assetJson("/interface/scripted/mmupgrade/mmupgradegui.config")
+   -- If json.replaced exists it's probably Quickbar Mini, try alternate asset location
+   if json.replaced then
+      json = root.assetJson("/interface/scripted/mmupgrade/mmupgradegui.original.config")
+   end
+   return json
+end
+
+
 
 --------------------------------------------------------------------------------
 --- MM state functions
@@ -288,7 +301,7 @@ end
 function mmbm.disableBuildMode()
    local player = player or { }
    local status = status or { }
-   local json = root.assetJson("/interface/scripted/mmupgrade/mmupgradegui.config")
+   local json = mmbm.rootAssetJson()
    local beamRange = mmbm.beamaxeRange()
    local newRange
    if beamRange > 0 then
@@ -424,7 +437,7 @@ function mmbm.getBaseSize ()
    local baseSize = mmbm.base.size
    local level = mmbm.beamaxeSize()
    if level > 0 then
-	  local json = root.assetJson("/interface/scripted/mmupgrade/mmupgradegui.config")
+      local json = mmbm.rootAssetJson()
 	  baseSize = json.
 		 upgrades["size" .. level].
 		 setItemParameters.
