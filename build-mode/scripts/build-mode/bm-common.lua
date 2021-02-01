@@ -45,7 +45,7 @@ mmbm.buildMode.level = {
 	  size  =  2,
    },
    {					-- upgrade3
-	  range = 39,
+	  range = 104,
 	  power =  4,
 	  size  =  3,
    },
