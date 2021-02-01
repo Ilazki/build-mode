@@ -83,16 +83,18 @@ mmbm.keybinds = {
    {
 	  keys = {special1 = true, jump = true},
 	  f = function () mmbm.overload.toggle() end
-   },
-   {
-	  keys = {special1 = true, left = true},
-	  f = function () mmbm.zoom.decrease() end
-   },
-   {
-	  keys = {special1 = true, right = true},
-	  f = function () mmbm.zoom.increase() end
    }
+   -- Zoom is no longer possible due to API changes
+   -- {
+   --    keys = {special1 = true, left = true},
+   --    f = function () mmbm.zoom.decrease() end
+   -- },
+   -- {
+   --    keys = {special1 = true, right = true},
+   --    f = function () mmbm.zoom.increase() end
+   -- }
 
+   -- Example
    -- {
    -- 	  keys = {run = false, jump = true},
    -- 	  f = function () print("shift-jump example") end
@@ -374,8 +376,9 @@ function mmbm.manipulator.update ()
    local beamaxe = player.essentialItem("beamaxe")
    local painttool = player.essentialItem("painttool")
 
+   -- FEATURE REMOVED.  Explanation below at mmbm.manipulator.zoom function definition
    -- Test and set zoom
-   mmbm.manipulator.zoom()
+   --   mmbm.manipulator.zoom()
 
    -- Test and set overload
    beamaxe.parameters.tileDamage = mmbm.manipulator.overload(beamaxe.parameters.tileDamage)
@@ -471,6 +474,11 @@ function mmbm.manipulator.overload(tileDamage)
    return tileDamage
 end
 
+--- NOTE: Zoom adjustment is no longer possible because the API calls needed were
+--- removed for unrelated security reasons and no safe alternative was ever provided.
+--- Chucklefish was unresponsive to discussion attempts about this and years later it
+--- is still unavailable, so hotkey zoom is a dead feature.
+
 --- Change zoom level, respecting values defined in optionsmenu.config
 function mmbm.manipulator.zoom ()
    local prop = mmbm.prop or { }
@@ -481,7 +489,7 @@ function mmbm.manipulator.zoom ()
    if zoom == 0 then return end
 
    -- Get current and valid zoom levels from configs, set min/max/current zooms.
-   local json = root.assetJson("/interface/optionsmenu/optionsmenu.config") or { }
+   local json = root.assetJson("/interface/windowconfig/graphicsmenu.config") or { }
    local zoomList = json.zoomList
    table.sort(zoomList)			-- Should already be in order, but just in case
    local minZoom = zoomList[1]					-- First element is minimum zoom
