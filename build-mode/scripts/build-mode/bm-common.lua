@@ -68,28 +68,28 @@ mmbm.base = {
 --- anonymous calls safer.
 
 --- Valid key names:  up, down, left, right, run, jump, primaryFire, altFire,
---- special. Special is a number (0 or 1, possibly more) and refers to the morph
---- ball activation, others all use booleans.  "run" detects use of the "walk /
---  MM precision" key, the rest are obvious.
+--- special[1,2,3]. Special1 is morph ball key, other Specials are unset by
+--- default but configurable and usable by mods.  All key values are boolean.
+--- "run" detects use of the "walk / MM precision" key, the rest are obvious.
 mmbm.keybinds = {
    {
-	  keys = {special = 1, up = true},
+	  keys = {special1 = true, up = true},
 	  f = function () mmbm.size.increase() end
    },
    {
-	  keys = {special = 1, down = true},
+	  keys = {special1 = true, down = true},
 	  f = function () mmbm.size.decrease() end
    },
    {
-	  keys = {special = 1, jump = true},
+	  keys = {special1 = true, jump = true},
 	  f = function () mmbm.overload.toggle() end
    },
    {
-	  keys = {special = 1, left = true},
+	  keys = {special1 = true, left = true},
 	  f = function () mmbm.zoom.decrease() end
    },
    {
-	  keys = {special = 1, right = true},
+	  keys = {special1 = true, right = true},
 	  f = function () mmbm.zoom.increase() end
    }
 
