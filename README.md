@@ -4,6 +4,7 @@ Build Mode adds a new setting to the Matter Manipulator that greatly increases i
 
 This mod was made to allow more convenient use of a graphics tablet for building; if you have one, give it a try.
 
+**Build Mode now works with Starbound 1.4.4**
 
 ## What it Does
 
@@ -12,7 +13,7 @@ This mod was made to allow more convenient use of a graphics tablet for building
 * If the character has a head tech (one of the four sphere techs), **manipulator settings can be controlled by hotkeys**.
 * With fully upgraded optics and matter proc unit, **dig and paint size can be adjusted from 1x1 to 8x8**.
 * Adds an **overload mode** toggle that increases the manipulator's tile damage when activated.
-* Adds **camera zoom hotkeys**.
+* ~~Adds **camera zoom hotkeys**.~~  [**Removed**.  No longer possible due to a Starbound API change.)
 * A build mode status effect provides visual feedback.  It appears under the hunger bar like any other status effect.
 
 With the benefits it provides, it's tempting to leave build mode active all the time.  To discourage this and add a measure of risk to using it in the wild, build mode also adds a few negative effects:
@@ -33,19 +34,16 @@ Once build mode is enabled and a head tech is equipped, the following key combin
 * **activate head tech** + **up**:  Increase dig and paint radius.
 * **activate head tech** + **down**:  Decrease dig and paint radius.
 * **activate head tech** + **jump**:  Toggle overload mode.  Dig power is greatly increased when enabled.
-* **activate head tech** + **left**:  Zoom camera out by one step.
-* **activate head tech** + **right**:  Zoom camera in by one step.
 
 ## Compatibility
 
 * Should work with other MM mods.  Build Mode restores the manipulator's settings to those defined in the game's files when the MM Upgrade interface is opened, so anything patching in new values (such as Overpowered Matter Manipulator) should be unaffected.
 * Exception:  build mode **will not work with Enhanced Matter Manipulator**.  EMM completely changes the GUI and upgrade scheme.  I won't be supporting this, sorry.
-* I use and explicitly test against Matter Manipulator Manipulator and Manipulated UI.  Others should work but haven't necessarily been tested.
+* I use and explicitly tested against Matter Manipulator Manipulator and Quickbar Mini.  Others should work but haven't necessarily been tested.
 * It should be noted that build mode disables one minor feature of the Matter Manipulator Manipulator mod:  lowering the manipulator's size with MMM's spinners will no longer provide a power increase.  Use the overload toggle instead.
 * For technical reasons, build mode adds hooks into certain tech and crew/pet scripts.  This should cause no problems with other mods but is listed for completeness.  For example, I use Improved Techs and have no problems.
 * Mods that replace any of the four head techs should still work as expected.
 * Mods that add additional techs will work, but build mode's hotkeys will only work when using one of the four vanilla techs.
-* Zoom hotkeys respect additional zoom steps added by other mods, such as Extra Zoom Levels.
 
 ## Notes and Warnings
 
