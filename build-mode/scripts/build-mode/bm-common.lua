@@ -31,22 +31,22 @@ mmbm.buildMode.level = {
    -- and mmbm.lua:init()
    [0] = {				-- no upgrades
 	  range = 0,
-	  power = 0,
+	  power = 1,
 	  size  = 0,
    },
    {					-- upgrade1
 	  range = 13,		-- Range increase
-	  power =  1,		-- Power increase (multiplier)
+	  power =  2,		-- Power increase (multiplier)
 	  size  =  1,		-- Dig size bonus (above normal maximum)
    },
    {					-- upgrade2
 	  range = 26,
-	  power =  2,
+	  power =  4,
 	  size  =  2,
    },
    {					-- upgrade3
 	  range = 104,
-	  power =  4,
+	  power =  8,
 	  size  =  3,
    },
 }
